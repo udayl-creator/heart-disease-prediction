@@ -44,7 +44,7 @@ def index():
         }
 
         input_df = pd.DataFrame([input_data])
-        probability = model.predict_proba(input_df)[0][1]
+        probability = model.predict_proba(input_df)[0][0]
         risk_percent = round(probability * 100, 2)
         if probability >= 0.5:
             prediction = 1
