@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            front-family:Arial, sans-serif;
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+            padding: 30px;
+        }
+        .box {
+            background: white;
+            padding: 25px;
+            width: 450px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            margin:auto;
+        }
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom:10px;
+            border-radius:4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .success{
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 6px solid green;
+            padding: 10px;
+            margin-top: 15px;
+
+        }
+        .danger {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 6px solid red;
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="box">
+    <h2>Heart Disease Prediction System</h2>
+
+    <form method="POST">
+        Age:
+        <input type="number" name="age" required>
+
+        Sex (1=Male, 0=Female):
+        <input type="number" name="sex" required>
+
+        Chest Pain Type (0–3):
+        <input type="number" name="cp" required>
+
+        Blood Pressure:
+        <input type="number" name="trestbps" required>
+
+        Cholesterol:
+        <input type="number" name="chol" required>
+
+        Fasting Blood Sugar (1/0):
+        <input type="number" name="fbs" required>
+
+        Rest ECG:
+        <input type="number" name="restecg" required>
+
+        Max Heart Rate:
+        <input type="number" name="thalach" required>
+
+        Exercise Angina (1/0):
+        <input type="number" name="exang" required>
+
+        Oldpeak:
+        <input type="number" step="0.1" name="oldpeak" required>
+
+        Slope:
+        <input type="number" name="slope" required>
+
+        CA:
+        <input type="number" name="ca" required>
+
+        Thal:
+        <input type="number" name="thal" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+        {% if prediction == 1 %}
+            <div class="danger">
+                ⚠️ <b>Heart Disease Detected</b><br>
+                <b>Risk Probability:</b> {{ risk }}% <br>
+                {{ recommendation }}
+            </div>
+        {% else %}
+            <div class="success">
+                ✅ <b>No Heart Disease Detected</b><br>
+                <b>Risk Probability:</b> {{ risk }}% <br>
+                {{ recommendation}}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+</body>
+</html>
